@@ -15,3 +15,12 @@ rl.question("escribe un numero", (n) => {
     rl.close()
 })
 
+
+
+//for
+for (let index = 0; index <= 5; index++) {
+    console.log(`vuelve numero: ${index}`);
+    
+    
+}
+
