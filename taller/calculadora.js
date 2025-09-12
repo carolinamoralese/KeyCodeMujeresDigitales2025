@@ -18,13 +18,18 @@ const askNumber = (ask) => {
   });
 };
 
+  let history= []
+
 
 const menu = async () => {
   let numberOne
 
   let numberTwo
 
-  let resultado;
+  let resultado
+
+
+
   console.log("Opciones Calculadora");
   console.log("1. Sumar");
   console.log("2. Restar");
@@ -32,10 +37,12 @@ const menu = async () => {
   console.log("4. Dividir");
   console.log("5. Porcentaje");
   console.log("6. Salir");
+  console.log("7. Historial");
+  
 
   const optionEntered = await askNumber("Que operacion necesitas hacer? ");
 
-   if (optionEntered !== 6) {
+   if (optionEntered !== 7) {
     numberOne = await askNumber("Ingrese el número uno: ");
     numberTwo = await askNumber("Ingrese el número dos: ");
   }
@@ -48,6 +55,7 @@ const menu = async () => {
 
       if (numberOne >= 0 && numberTwo >= 0) {
         resultado = numberOne + numberTwo;
+        history.push(`${numberOne} + ${numberTwo} = ${resultado}`);
         console.log(`==== El resultado de la operacion es: ${resultado} ===== \n`);
       }
       break;
@@ -58,6 +66,7 @@ const menu = async () => {
 
       if (numberOne >= 0 && numberTwo >= 0) {
         resultado = numberOne - numberTwo;
+         history.push(`${numberOne} - ${numberTwo} = ${resultado}`);
         console.log(`==== El resultado de la operacion es: ${resultado} ==== \n`);
       }else{
         console.log("El numero dos no puede ser menor al numero uno ");
@@ -71,6 +80,7 @@ const menu = async () => {
 
       if (numberOne >= 0 && numberTwo >= 0) {
         resultado = numberOne * numberTwo;
+         history.push(`${numberOne} * ${numberTwo} = ${resultado}`);
         console.log(`======= El resultado de la operacion es: ${resultado} ====== \n`);
       }
       break;
@@ -81,6 +91,7 @@ const menu = async () => {
 
       if (numberOne >= 0 && numberTwo >= 0 && numberTwo > 0) {
         resultado = numberOne / numberTwo;
+         history.push(`${numberOne} / ${numberTwo} = ${resultado}`);
         console.log(`==== El resultado de la operacion es: ${resultado} ==== \n`);
       }
       break;
@@ -91,6 +102,8 @@ const menu = async () => {
 
       if (numberOne >= 0 && numberTwo >= 0) {
         resultado = (numberOne * numberTwo) / 100;
+        history.push(`${numberOne} % ${numberTwo} = ${resultado}`);
+        
         console.log(`==== El resultado de la operacion es: ${resultado} ====\n`);
       }
       break;
@@ -100,6 +113,17 @@ const menu = async () => {
       console.log("==== Gracias por usar la calculadora==== \n");
       rl.close();
       return;
+
+    case 7:
+      console.clear();
+      console.log("=== Historial de operaciones ===");
+      if (history.length === 0) {
+        console.log("No hay operaciones aún");
+      } else {
+        history.forEach((op) => console.log(op));
+      }
+      console.log("\n");
+      break;
 
     default:
       break;
